@@ -17,3 +17,5 @@ I added the "--rlefile_path" argument, to pass the file to read as an argument o
   $python GameOfLife.py --rlefile_path path
 
 I added the "--output_dir" argument, to direct output in a customized directory. The directory is automatically created, if it does not already exist. Its default value is: "output".
+
+I added the "--ffmpeg_path" argument, to set the path to ffmpeg
