@@ -2,6 +2,7 @@
 import numpy as np
 from GameOfLife_utils import readRLE_New, readPattern, plotcells, get_history, makeMovie
 import argparse
+import os
 
 ''' Initial board '''
 
@@ -9,7 +10,7 @@ import argparse
 #B = np.random.choice(2,(60,60),p=[0.8,0.2]).astype(bool)
 
 ################################
-def do_it(pattern,shape,pos,T,trim=False,rH=False, rV=False, tp=False):
+def do_it(pattern,output_dir,shape,pos,T,trim=False,rH=False, rV=False, tp=False):
     ''' Load a pattern from an RLE file, run evolution and make a movie
     Options :
     * pos = where to position the pattern on the board
@@ -21,6 +22,9 @@ def do_it(pattern,shape,pos,T,trim=False,rH=False, rV=False, tp=False):
     B = readPattern(pattern,shape,pos,rH=rH,rV=rV,tp=tp)
     history = get_history(B,T)
 
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
     plotcells(history[0,:,:],"output/"+pattern+"_init.png")
     plotcells(history[-1,:,:],"output/"+pattern+"_end.png")
     makeMovie(history,"output/"+pattern+".mp4",trim=trim)
@@ -30,6 +34,7 @@ def do_it(pattern,shape,pos,T,trim=False,rH=False, rV=False, tp=False):
 #setting command line arguments parser
 parser = argparse.ArgumentParser()
 parser.add_argument('--rlefile_path', type=str, help="path of the RLE file to read")
+parser.add_argument('--output_dir', type=str, help="output directory for frames and movies", default="output")
 
 args = parser.parse_args()
 
@@ -37,7 +42,7 @@ if not args.rlefile_path:
     raise ValueError("missing argument.")
 
 Cshape, pos, T, rH, rV, trim, tp, pattern = readRLE_New(args.rlefile_path)
-do_it(pattern,shape=Cshape,pos=pos,T=T,trim=trim,rH=rH,rV=rV,tp=tp)
+do_it(pattern=pattern,shape=Cshape,pos=pos,T=T,trim=trim,rH=rH,rV=rV,tp=tp,output_dir=args.output_dir)
 
 #pattern = "example1"
 #shapeY = 10
