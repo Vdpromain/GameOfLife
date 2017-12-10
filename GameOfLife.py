@@ -22,8 +22,8 @@ def do_it(pattern,output_dir,shape,pos,T,trim=False,rH=False, rV=False, tp=False
     B = readPattern(pattern,shape,pos,rH=rH,rV=rV,tp=tp)
     history = get_history(B,T)
 
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
+        if not os.path.exists(output_dir):
+            os.makedirs(output_dir)
 
     plotcells(history[0,:,:],"output/"+pattern+"_init.png")
     plotcells(history[-1,:,:],"output/"+pattern+"_end.png")
