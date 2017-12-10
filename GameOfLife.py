@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import numpy as np
-from GameOfLife_utils import readRLE_New, readPattern, plotcells, get_history, makeMovie
+from GameOfLife_utils import readRLE_New, readPattern, plotcells, get_history, makeMovie, plt
 import argparse
 import os
 
@@ -35,8 +35,14 @@ def do_it(pattern,output_dir,shape,pos,T,trim=False,rH=False, rV=False, tp=False
 parser = argparse.ArgumentParser()
 parser.add_argument('--rlefile_path', type=str, help="path of the RLE file to read")
 parser.add_argument('--output_dir', type=str, help="output directory for frames and movies", default="output")
+parser.add_argument('--ffmpeg_path', type=str, help="path to ffmpeg")
 
 args = parser.parse_args()
+
+# Path of ffmpeg executable for animation
+if args.ffmpeg_path:
+    plt.rcParams['animation.ffmpeg_path'] = args.ffmpeg_path
+
 
 if not args.rlefile_path:
     raise ValueError("missing argument.")
