@@ -14,4 +14,4 @@ I modified the rle files, so they can embed parameters.
 
 I added the "--rlefile_path" argument, to pass the file to read as an argument on command line. So you can use as follows:
 
-$python GameOfLife.py --rlefile_path path
+  $python GameOfLife.py --rlefile_path path
