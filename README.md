@@ -15,3 +15,5 @@ I modified the rle files, so they can embed parameters.
 I added the "--rlefile_path" argument, to pass the file to read as an argument on command line. So you can use as follows:
 
   $python GameOfLife.py --rlefile_path path
+
+I added the "--output_dir" argument, to direct output in a customized directory. The directory is automatically created, if it does not already exist. Its default value is: "output".
