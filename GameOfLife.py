@@ -25,9 +25,9 @@ def do_it(pattern,output_dir,shape,pos,T,trim=False,rH=False, rV=False, tp=False
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
-    plotcells(history[0,:,:],"output/"+pattern+"_init.png")
-    plotcells(history[-1,:,:],"output/"+pattern+"_end.png")
-    makeMovie(history,"output/"+pattern+".mp4",trim=trim)
+    plotcells(history[0,:,:],os.path.join(output_dir,pattern+"_init.png"))
+    plotcells(history[-1,:,:],os.path.join(output_dir,pattern+"_end.png"))
+    makeMovie(history,os.path.join(output_dir,pattern+".mp4"),trim=trim)
 
 ################################
 
