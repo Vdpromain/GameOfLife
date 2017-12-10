@@ -43,7 +43,6 @@ args = parser.parse_args()
 if args.ffmpeg_path:
     plt.rcParams['animation.ffmpeg_path'] = args.ffmpeg_path
 
-
 if not args.rlefile_path:
     raise ValueError("missing argument.")
 
