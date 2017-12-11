@@ -48,7 +48,7 @@ if not args.rlefile_path:
 
 Cshape, pos, T, rH, rV, trim, tp, pattern = readRLE_New(args.rlefile_path)
 filename = os.path.split(args.rlefile_path)[1]
-filename = filename.split('.')[1]
+filename = filename.split('.')[0]
 do_it(pattern=pattern,filename=filename,shape=Cshape,pos=pos,T=T,trim=trim,rH=rH,rV=rV,tp=tp,output_dir=args.output_dir)
 
 #pattern = "example1"
