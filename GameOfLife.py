@@ -10,7 +10,7 @@ import os
 #B = np.random.choice(2,(60,60),p=[0.8,0.2]).astype(bool)
 
 ################################
-def do_it(pattern,output_dir,shape,pos,T,trim=False,rH=False, rV=False, tp=False):
+def do_it(pattern,filename,output_dir,shape,pos,T,trim=False,rH=False, rV=False, tp=False):
     ''' Load a pattern from an RLE file, run evolution and make a movie
     Options :
     * pos = where to position the pattern on the board
@@ -25,9 +25,9 @@ def do_it(pattern,output_dir,shape,pos,T,trim=False,rH=False, rV=False, tp=False
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
-    plotcells(history[0,:,:],os.path.join(output_dir,pattern+"_init.png"))
-    plotcells(history[-1,:,:],os.path.join(output_dir,pattern+"_end.png"))
-    makeMovie(history,os.path.join(output_dir,pattern+".mp4"),trim=trim)
+    plotcells(history[0,:,:],os.path.join(output_dir,filename+"_init.png"))
+    plotcells(history[-1,:,:],os.path.join(output_dir,filename+"_end.png"))
+    makeMovie(history,os.path.join(output_dir,filename+".mp4"),trim=trim)
 
 ################################
 
@@ -47,7 +47,9 @@ if not args.rlefile_path:
     raise ValueError("missing argument.")
 
 Cshape, pos, T, rH, rV, trim, tp, pattern = readRLE_New(args.rlefile_path)
-do_it(pattern=pattern,shape=Cshape,pos=pos,T=T,trim=trim,rH=rH,rV=rV,tp=tp,output_dir=args.output_dir)
+filename = os.path.split(args.rlefile_path)[1]
+filename = filename.split('.')[1]
+do_it(pattern=pattern,filename=filename,shape=Cshape,pos=pos,T=T,trim=trim,rH=rH,rV=rV,tp=tp,output_dir=args.output_dir)
 
 #pattern = "example1"
 #shapeY = 10
